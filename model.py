@@ -21,6 +21,9 @@ class LTECategoryOlv:
         self.dl_low = dl_low
         self.dl_high = dl_high
         self.mode = mode
+        
+    def __repr__(self):
+        return f"<Band {self.category}>"
 
 # %%
 

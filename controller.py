@@ -22,19 +22,17 @@ def get_all_categories():
     
 
 
-def get_available_categories(uplink, downlink):
+def get_available_categories(low, high):
     categories = get_all_categories()
     print([c.ul_low for c in categories])
+    print([c.ul_high for c in categories])
     for category in categories:
-        if int(category.ul_low) <= int(uplink):
-            print(1)
-            if category.ul_high > uplink:
-                print(2)
-                if category.dl_low <= downlink:
-                    print(3)
-                    if category.dl_high > downlink:
-                        print(category)
-        
+        if int(category.ul_low) < int(high) \
+            and int(category.ul_high > int(low)):
+                print(category)
+            
+            
+            
         
 get_available_categories(1800, 1900)
     
