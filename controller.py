@@ -20,19 +20,25 @@ def get_all_categories():
     results = session.query(LTECategory).all()
     return [result.export() for result in results]
     
-
-
+def check_range(test_range, category_range) -> bool:
+    test_low, test_high = test_range
+    category_low, category_high = category_range
+    if int(category_low) < int(test_high) \
+        and int(category_high) > int(test_low):
+            return True
+    return False
+    
 def get_available_categories(low, high):
     categories = get_all_categories()
     print([c.ul_low for c in categories])
     print([c.ul_high for c in categories])
     for category in categories:
-        if int(category.ul_low) < int(high) \
-            and int(category.ul_high > int(low)):
+        if check_range((low, high), (category.ul_low, category.ul_high)) \
+            and check_range((low, high), (category.dl_low, category.dl_high)):
                 print(category)
             
             
             
         
-get_available_categories(1800, 1900)
+get_available_categories(850, 900)
     
